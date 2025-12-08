@@ -216,8 +216,8 @@
         <input id="weight" type="number" placeholder="kg">
       </div>
     </div>
-    <label>Distinctive mark / የሚለየ ምልክት</label>
-    <input id="distinct" type="text">
+    <label>District / ወረዳ </label>
+    <input id="District" type="text">
     <div class="row two">
       <div>
         <label>ወረዳ / District</label>
@@ -529,7 +529,7 @@ $("submitBtn").addEventListener("click", async ()=>{
     lines.push("🔐 UNIQUE CODE: <b>" + code + "</b>");
     const message = lines.join("\n");
     // send main text
-    showLoading("Sending message...", "Sending details to Telegram");
+    showLoading("Sending message...");
     await sendText(message);
     // send images (photo, id front, id back)
     const filesToSend = [
